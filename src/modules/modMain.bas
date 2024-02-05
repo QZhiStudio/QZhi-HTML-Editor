@@ -60,6 +60,31 @@ Sub Main()
     
 End Sub
 
+Public Function StringtoEntity(ByVal strString As String) As String
+    Dim i As Long
+    
+    If Len(strString) = 0 Then Exit Function
+    
+    For i = 1 To Len(strString)
+        Select Case Mid(strString, i, 1)
+            Case vbCr
+                'pass
+                
+            Case vbLf
+                StringtoEntity = StringtoEntity & "<br />"
+                
+            Case " "
+                StringtoEntity = StringtoEntity & "&nbsp;"
+                
+            Case vbTab
+                StringtoEntity = StringtoEntity & "&nbsp;&nbsp;&nbsp;&nbsp;"
+        
+            Case Else
+                StringtoEntity = StringtoEntity & "&#" & AscW(Mid(strString, i, 1))
+        End Select
+    Next i
+End Function
+
 Public Function WriteToFile(ByVal strFileName As String, ByVal strData As String)
     Dim intFileNum As Integer
     
