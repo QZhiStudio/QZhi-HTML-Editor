@@ -13,6 +13,210 @@ Begin VB.Form frmMenu
    ScaleHeight     =   3015
    ScaleWidth      =   12555
    StartUpPosition =   3  '窗口缺省
+   Begin ComctlLib.Toolbar tlbMain 
+      Align           =   1  'Align Top
+      Height          =   420
+      Left            =   0
+      TabIndex        =   0
+      Top             =   0
+      Width           =   12555
+      _ExtentX        =   22146
+      _ExtentY        =   741
+      ButtonWidth     =   635
+      ButtonHeight    =   582
+      AllowCustomize  =   0   'False
+      Wrappable       =   0   'False
+      Appearance      =   1
+      ImageList       =   "ilsMain"
+      _Version        =   327682
+      BeginProperty Buttons {0713E452-850A-101B-AFC0-4210102A8DA7} 
+         NumButtons      =   16
+         BeginProperty Button1 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "New"
+            Object.ToolTipText     =   "新建"
+            Object.Tag             =   ""
+            ImageIndex      =   1
+         EndProperty
+         BeginProperty Button2 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Open"
+            Object.ToolTipText     =   "打开"
+            Object.Tag             =   ""
+            ImageIndex      =   2
+         EndProperty
+         BeginProperty Button3 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Save"
+            Object.ToolTipText     =   "保存"
+            Object.Tag             =   ""
+            ImageIndex      =   6
+         EndProperty
+         BeginProperty Button4 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "SaveAs"
+            Object.ToolTipText     =   "另存为"
+            Object.Tag             =   ""
+            ImageIndex      =   7
+         EndProperty
+         BeginProperty Button5 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   ""
+            Object.Tag             =   ""
+            Style           =   3
+            MixedState      =   -1  'True
+         EndProperty
+         BeginProperty Button6 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "PageSetup"
+            Object.ToolTipText     =   "页面设置"
+            Object.Tag             =   ""
+            ImageIndex      =   3
+         EndProperty
+         BeginProperty Button7 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "PrintPreview"
+            Object.ToolTipText     =   "打印预览"
+            Object.Tag             =   ""
+            ImageIndex      =   5
+         EndProperty
+         BeginProperty Button8 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Print"
+            Object.ToolTipText     =   "打印"
+            Object.Tag             =   ""
+            ImageIndex      =   4
+         EndProperty
+         BeginProperty Button9 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   ""
+            Object.Tag             =   ""
+            Style           =   3
+            MixedState      =   -1  'True
+         EndProperty
+         BeginProperty Button10 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Undo"
+            Object.ToolTipText     =   "撤消"
+            Object.Tag             =   ""
+            ImageIndex      =   13
+         EndProperty
+         BeginProperty Button11 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Redo"
+            Object.ToolTipText     =   "重做"
+            Object.Tag             =   ""
+            ImageIndex      =   11
+         EndProperty
+         BeginProperty Button12 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   ""
+            Object.Tag             =   ""
+            Style           =   3
+            MixedState      =   -1  'True
+         EndProperty
+         BeginProperty Button13 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "SelectAll"
+            Object.ToolTipText     =   "全选"
+            Object.Tag             =   ""
+            ImageIndex      =   12
+         EndProperty
+         BeginProperty Button14 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Cut"
+            Object.ToolTipText     =   "剪切"
+            Object.Tag             =   ""
+            ImageIndex      =   9
+         EndProperty
+         BeginProperty Button15 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Copy"
+            Object.ToolTipText     =   "复制"
+            Object.Tag             =   ""
+            ImageIndex      =   8
+         EndProperty
+         BeginProperty Button16 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Paste"
+            Object.ToolTipText     =   "粘贴"
+            Object.Tag             =   ""
+            ImageIndex      =   10
+         EndProperty
+      EndProperty
+   End
+   Begin ComctlLib.Toolbar tlbBrowse 
+      Align           =   1  'Align Top
+      Height          =   420
+      Left            =   0
+      TabIndex        =   1
+      Top             =   420
+      Width           =   12555
+      _ExtentX        =   22146
+      _ExtentY        =   741
+      ButtonWidth     =   635
+      ButtonHeight    =   582
+      AllowCustomize  =   0   'False
+      Wrappable       =   0   'False
+      Appearance      =   1
+      ImageList       =   "ilsBrowse"
+      _Version        =   327682
+      BeginProperty Buttons {0713E452-850A-101B-AFC0-4210102A8DA7} 
+         NumButtons      =   10
+         BeginProperty Button1 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "GoBack"
+            Object.ToolTipText     =   "后退"
+            Object.Tag             =   ""
+            ImageIndex      =   1
+         EndProperty
+         BeginProperty Button2 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "GoForward"
+            Object.ToolTipText     =   "前进"
+            Object.Tag             =   ""
+            ImageIndex      =   2
+         EndProperty
+         BeginProperty Button3 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Refresh"
+            Object.ToolTipText     =   "刷新"
+            Object.Tag             =   ""
+            ImageIndex      =   4
+         EndProperty
+         BeginProperty Button4 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Stop"
+            Object.ToolTipText     =   "停止"
+            Object.Tag             =   ""
+            ImageIndex      =   5
+         EndProperty
+         BeginProperty Button5 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   ""
+            Object.Tag             =   ""
+            Style           =   3
+            MixedState      =   -1  'True
+         EndProperty
+         BeginProperty Button6 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "Home"
+            Object.ToolTipText     =   "主页"
+            Object.Tag             =   ""
+            ImageIndex      =   3
+         EndProperty
+         BeginProperty Button7 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   ""
+            Object.Tag             =   ""
+            Style           =   3
+            MixedState      =   -1  'True
+         EndProperty
+         BeginProperty Button8 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "ZoomIn"
+            Object.ToolTipText     =   "放大"
+            Object.Tag             =   ""
+            ImageIndex      =   6
+         EndProperty
+         BeginProperty Button9 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "ZoomOut"
+            Object.ToolTipText     =   "缩小"
+            Object.Tag             =   ""
+            ImageIndex      =   8
+         EndProperty
+         BeginProperty Button10 {0713F354-850A-101B-AFC0-4210102A8DA7} 
+            Key             =   "ZoomOriginalSize"
+            Object.ToolTipText     =   "缩放至正常大小"
+            Object.Tag             =   ""
+            ImageIndex      =   7
+         EndProperty
+      EndProperty
+      Begin VB.ComboBox cboZoom 
+         Height          =   300
+         Left            =   3240
+         Style           =   2  'Dropdown List
+         TabIndex        =   3
+         Top             =   45
+         Width           =   3135
+      End
+   End
    Begin ComctlLib.Toolbar tlbFormat 
       Align           =   1  'Align Top
       Height          =   420
@@ -169,210 +373,6 @@ Begin VB.Form frmMenu
          Top             =   45
          Width           =   2310
       End
-   End
-   Begin ComctlLib.Toolbar tlbBrowse 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   1
-      Top             =   420
-      Width           =   12555
-      _ExtentX        =   22146
-      _ExtentY        =   741
-      ButtonWidth     =   635
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Wrappable       =   0   'False
-      Appearance      =   1
-      ImageList       =   "ilsBrowse"
-      _Version        =   327682
-      BeginProperty Buttons {0713E452-850A-101B-AFC0-4210102A8DA7} 
-         NumButtons      =   10
-         BeginProperty Button1 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "GoBack"
-            Object.ToolTipText     =   "后退"
-            Object.Tag             =   ""
-            ImageIndex      =   1
-         EndProperty
-         BeginProperty Button2 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "GoForward"
-            Object.ToolTipText     =   "前进"
-            Object.Tag             =   ""
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Refresh"
-            Object.ToolTipText     =   "刷新"
-            Object.Tag             =   ""
-            ImageIndex      =   4
-         EndProperty
-         BeginProperty Button4 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Stop"
-            Object.ToolTipText     =   "停止"
-            Object.Tag             =   ""
-            ImageIndex      =   5
-         EndProperty
-         BeginProperty Button5 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
-            Object.Tag             =   ""
-            Style           =   3
-            MixedState      =   -1  'True
-         EndProperty
-         BeginProperty Button6 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Home"
-            Object.ToolTipText     =   "主页"
-            Object.Tag             =   ""
-            ImageIndex      =   3
-         EndProperty
-         BeginProperty Button7 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
-            Object.Tag             =   ""
-            Style           =   3
-            MixedState      =   -1  'True
-         EndProperty
-         BeginProperty Button8 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "ZoomIn"
-            Object.ToolTipText     =   "放大"
-            Object.Tag             =   ""
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button9 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "ZoomOut"
-            Object.ToolTipText     =   "缩小"
-            Object.Tag             =   ""
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button10 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "ZoomOriginalSize"
-            Object.ToolTipText     =   "缩放至正常大小"
-            Object.Tag             =   ""
-            ImageIndex      =   7
-         EndProperty
-      EndProperty
-      Begin VB.ComboBox cboZoom 
-         Height          =   300
-         Left            =   3240
-         Style           =   2  'Dropdown List
-         TabIndex        =   3
-         Top             =   45
-         Width           =   3135
-      End
-   End
-   Begin ComctlLib.Toolbar tlbMain 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   0
-      Top             =   0
-      Width           =   12555
-      _ExtentX        =   22146
-      _ExtentY        =   741
-      ButtonWidth     =   635
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Wrappable       =   0   'False
-      Appearance      =   1
-      ImageList       =   "ilsMain"
-      _Version        =   327682
-      BeginProperty Buttons {0713E452-850A-101B-AFC0-4210102A8DA7} 
-         NumButtons      =   16
-         BeginProperty Button1 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "New"
-            Object.ToolTipText     =   "新建"
-            Object.Tag             =   ""
-            ImageIndex      =   1
-         EndProperty
-         BeginProperty Button2 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Open"
-            Object.ToolTipText     =   "打开"
-            Object.Tag             =   ""
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Save"
-            Object.ToolTipText     =   "保存"
-            Object.Tag             =   ""
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button4 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "SaveAs"
-            Object.ToolTipText     =   "另存为"
-            Object.Tag             =   ""
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button5 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
-            Object.Tag             =   ""
-            Style           =   3
-            MixedState      =   -1  'True
-         EndProperty
-         BeginProperty Button6 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "PageSetup"
-            Object.ToolTipText     =   "页面设置"
-            Object.Tag             =   ""
-            ImageIndex      =   3
-         EndProperty
-         BeginProperty Button7 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "PrintPreview"
-            Object.ToolTipText     =   "打印预览"
-            Object.Tag             =   ""
-            ImageIndex      =   5
-         EndProperty
-         BeginProperty Button8 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Print"
-            Object.ToolTipText     =   "打印"
-            Object.Tag             =   ""
-            ImageIndex      =   4
-         EndProperty
-         BeginProperty Button9 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
-            Object.Tag             =   ""
-            Style           =   3
-            MixedState      =   -1  'True
-         EndProperty
-         BeginProperty Button10 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Undo"
-            Object.ToolTipText     =   "撤消"
-            Object.Tag             =   ""
-            ImageIndex      =   13
-         EndProperty
-         BeginProperty Button11 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Redo"
-            Object.ToolTipText     =   "重做"
-            Object.Tag             =   ""
-            ImageIndex      =   11
-         EndProperty
-         BeginProperty Button12 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
-            Object.Tag             =   ""
-            Style           =   3
-            MixedState      =   -1  'True
-         EndProperty
-         BeginProperty Button13 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "SelectAll"
-            Object.ToolTipText     =   "全选"
-            Object.Tag             =   ""
-            ImageIndex      =   12
-         EndProperty
-         BeginProperty Button14 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Cut"
-            Object.ToolTipText     =   "剪切"
-            Object.Tag             =   ""
-            ImageIndex      =   9
-         EndProperty
-         BeginProperty Button15 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Copy"
-            Object.ToolTipText     =   "复制"
-            Object.Tag             =   ""
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button16 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   "Paste"
-            Object.ToolTipText     =   "粘贴"
-            Object.Tag             =   ""
-            ImageIndex      =   10
-         EndProperty
-      EndProperty
    End
    Begin SHDocVwCtl.WebBrowser brwWebControl 
       Height          =   510
@@ -1049,12 +1049,15 @@ Private Function UpdateBackgroundColor()
     Dim lngColorRef As Long
     
     lngColorRef = clsCP.GetColor(lngCurrentBGColor, lngNewBGColor)
+    
     If lngColorRef <> -1 Then
         lngNewBGColor = lngColorRef
         frmCode.hdocHTMLDesignDocument.execCommand "BackColor", False, lngColorRef
     End If
     
     UpdateBGColorButton
+    
+    Set clsCP = Nothing
 End Function
 
 Private Function UpdateForegroundColor()
@@ -1062,12 +1065,15 @@ Private Function UpdateForegroundColor()
     Dim lngColorRef As Long
     
     lngColorRef = clsCP.GetColor(lngCurrentFGColor, lngNewFGColor)
+    
     If lngColorRef <> -1 Then
         lngNewFGColor = lngColorRef
         frmCode.hdocHTMLDesignDocument.execCommand "ForeColor", False, lngColorRef
     End If
     
     UpdateFGColorButton
+    
+    Set clsCP = Nothing
 End Function
 
 Public Function SetToolbarStat()

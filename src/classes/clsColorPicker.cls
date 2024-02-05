@@ -68,4 +68,5 @@ Public Function GetColor(ByVal lngCurrentColor As Long, ByVal lngNewColor As Lon
     End If
     
     Set frmCP = Nothing
+    
 End Function

@@ -198,6 +198,11 @@ Private Sub brwQuickView_DownloadComplete()
     brwQuickView.Silent = True
 End Sub
 
+Private Sub brwQuickView_NewWindow2(ppDisp As Object, Cancel As Boolean)
+    brwQuickView.Navigate2 brwQuickView.Document.activeElement.href
+    Cancel = True
+End Sub
+
 Private Sub brwQuickView_StatusTextChange(ByVal Text As String)
     frmMsg.PrintLog Time, "WebBrowser.StatusText", Text
 End Sub
@@ -271,24 +276,35 @@ Public Sub tabMain_Click()
     Select Case tabMain.SelectedItem.Index
         Case 1
             SetAppMode AppDesignMode
-            If brwDesign_Initialized = True Then WriteHTML brwDesign, eEditor.Value
+            
             brwDesign.ZOrder 0
+            
+            If brwDesign_Initialized = True Then WriteHTML brwDesign, eEditor.Value
         
         Case 2
             SetAppMode AppEditMode
+            
+            brwSource.ZOrder 0
+            
+            If idxSelectedTabItem = 1 Then
+                eEditor.Value = brwDesign.Document.documentElement.outerHTML
+            End If
+        
+        Case 3
+            SetAppMode AppQuickViewMode
+            
+            brwQuickView.ZOrder 0
+            
             If idxSelectedTabItem = 1 Then
                 eEditor.Value = brwDesign.Document.documentElement.outerHTML
             End If
             
-            brwSource.ZOrder 0
-        
-        Case 3
-            SetAppMode AppQuickViewMode
-            If idxSelectedTabItem = 1 Then
-                eEditor.Value = brwDesign.Document.documentElement.outerHTML
-            End If
-            If brwQuickView_Initialized = True Then WriteHTML brwQuickView, eEditor.Value
-            brwQuickView.ZOrder 0
+            brwQuickView_Initialized = False
+            brwQuickView.Navigate "about:blank"
+            While brwQuickView_Initialized = False
+                DoEvents
+            Wend
+            WriteHTML brwQuickView, eEditor.Value
         
     End Select
     
