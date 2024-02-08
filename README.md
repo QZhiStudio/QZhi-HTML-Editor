@@ -53,6 +53,6 @@ QZhi HTML Editor 是一款轻量级的所见即所得编辑器，可用于编辑
 
 * 新增了 WebBrowser.NavigateWarning 和 WebBrowser.NavigateError 两种消息类型。
 
-* 增加了最消息列表的保存和清空功能。
+* 增加了消息列表的保存和清空功能。
 
 注：本版为 rc 版（但是帮助文档没有更新），如果没有错误，下一个版本将是正式版。
