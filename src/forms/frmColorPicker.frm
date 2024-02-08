@@ -18,11 +18,13 @@ Begin VB.Form frmColorPicker
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  '屏幕中心
    Begin VB.PictureBox picHex 
+      AutoRedraw      =   -1  'True
       BorderStyle     =   0  'None
       Height          =   375
       Left            =   240
-      ScaleHeight     =   375
-      ScaleWidth      =   4335
+      ScaleHeight     =   25
+      ScaleMode       =   3  'Pixel
+      ScaleWidth      =   289
       TabIndex        =   33
       Top             =   5640
       Width           =   4335
@@ -37,6 +39,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label Label1 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "十六进制(&H)："
          Height          =   180
          Left            =   0
@@ -46,11 +49,13 @@ Begin VB.Form frmColorPicker
       End
    End
    Begin VB.PictureBox picHSL 
+      AutoRedraw      =   -1  'True
       BorderStyle     =   0  'None
       Height          =   1095
       Left            =   120
-      ScaleHeight     =   1095
-      ScaleWidth      =   4335
+      ScaleHeight     =   73
+      ScaleMode       =   3  'Pixel
+      ScaleWidth      =   289
       TabIndex        =   23
       Top             =   7200
       Width           =   4335
@@ -146,6 +151,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label lblL 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "亮度(&L)："
          Height          =   180
          Left            =   0
@@ -155,6 +161,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label lblS 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "饱和度(&S)："
          Height          =   180
          Left            =   0
@@ -164,6 +171,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label lblH 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "色调(&H)："
          Height          =   180
          Left            =   0
@@ -177,8 +185,9 @@ Begin VB.Form frmColorPicker
       BorderStyle     =   0  'None
       Height          =   1095
       Left            =   240
-      ScaleHeight     =   1095
-      ScaleWidth      =   4335
+      ScaleHeight     =   73
+      ScaleMode       =   3  'Pixel
+      ScaleWidth      =   289
       TabIndex        =   13
       Top             =   4560
       Width           =   4335
@@ -243,13 +252,13 @@ Begin VB.Form frmColorPicker
          Width           =   2880
       End
       Begin ComCtl2.UpDown updR 
-         Height          =   255
+         Height          =   270
          Left            =   4080
          TabIndex        =   16
          Top             =   0
          Width           =   255
          _ExtentX        =   450
-         _ExtentY        =   450
+         _ExtentY        =   476
          _Version        =   327681
          Value           =   1
          AutoBuddy       =   -1  'True
@@ -275,6 +284,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label lblB 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "蓝色(&B)："
          Height          =   180
          Left            =   0
@@ -284,6 +294,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label lblG 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "绿色(&G)："
          Height          =   180
          Left            =   0
@@ -293,6 +304,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label lblR 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "红色(&R)："
          Height          =   180
          Left            =   0
@@ -306,8 +318,9 @@ Begin VB.Form frmColorPicker
       BorderStyle     =   0  'None
       Height          =   375
       Left            =   240
-      ScaleHeight     =   375
-      ScaleWidth      =   4335
+      ScaleHeight     =   25
+      ScaleMode       =   3  'Pixel
+      ScaleWidth      =   289
       TabIndex        =   10
       Top             =   4200
       Width           =   4335
@@ -323,6 +336,7 @@ Begin VB.Form frmColorPicker
       End
       Begin VB.Label lblColorMode 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "颜色模式(&M)："
          Height          =   180
          Left            =   0
@@ -513,6 +527,8 @@ Private blnIsDragging As Boolean ' 用于判断是否在拖动模式
 
 Public blnIsSelected As Boolean ' 用于判断颜色是否选定
 
+Private blnIsBGInitialized As Boolean
+
 Private Sub cboColorMode_Click()
     Select Case cboColorMode.List(cboColorMode.ListIndex)
         Case "RGB"
@@ -524,12 +540,17 @@ Private Sub cboColorMode_Click()
     tabMain_Click
 End Sub
 
+Private Sub cmdCancel_Click()
+    blnIsSelected = False
+    Unload Me
+End Sub
+
 Private Sub cmdOK_Click()
     blnIsSelected = True
     Unload Me
 End Sub
 
-Private Sub Form_Load()
+Private Sub Form_Initialize()
     Me.Width = 6400
     Me.Height = 7680
     
@@ -542,7 +563,6 @@ Private Sub Form_Load()
     cboColorMode.ListIndex = 0
     
     tabMain_Click
-    
 End Sub
 
 Private Sub InitWebSafeColorButtons()
@@ -565,6 +585,29 @@ Private Sub InitWebSafeColorButtons()
         End With
     Next i
     
+End Sub
+
+Private Sub Form_Paint()
+    If blnIsBGInitialized = False Then
+        blnIsBGInitialized = True
+        
+        tabMain.ZOrder 0
+        Me.Refresh
+        
+        ' 通过重绘一遍背景来实现伪透明
+        
+        BitBlt picLuminance.hDC, 0, 0, picLuminance.ScaleWidth, picLuminance.ScaleHeight, Me.hDC, picLuminance.Left, picLuminance.Top, vbSrcCopy
+        
+        BitBlt picColorMode.hDC, 0, 0, picColorMode.ScaleWidth, picColorMode.ScaleHeight, Me.hDC, picColorMode.Left, picColorMode.Top, vbSrcCopy
+        
+        BitBlt picRGB.hDC, 0, 0, picRGB.ScaleWidth, picRGB.ScaleHeight, Me.hDC, picRGB.Left, picRGB.Top, vbSrcCopy
+        
+        BitBlt picHSL.hDC, 0, 0, picHSL.ScaleWidth, picHSL.ScaleHeight, Me.hDC, picHSL.Left, picHSL.Top, vbSrcCopy
+        
+        BitBlt picHex.hDC, 0, 0, picHex.ScaleWidth, picHex.ScaleHeight, Me.hDC, picHex.Left, picHex.Top, vbSrcCopy
+        
+        tabMain.ZOrder 1
+    End If
 End Sub
 
 ' 改成 Public 很重要
@@ -710,14 +753,14 @@ Private Sub picColorsRectangle_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 ' 改成 Public 很重要
-Public Sub picColorsRectangle_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If (Button = 1) And (0 <= X) And (X <= 240) And (0 <= Y) And (Y <= 240) Then
+Public Sub picColorsRectangle_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If (Button = 1) And (0 <= x) And (x <= 240) And (0 <= y) And (y <= 240) Then
     
         blnIsDragging = True
     
-        imgCursor1.Move X - 7, Y - 7
-        lngColorRef = picColorsRectangle.Point(X, Y)
-        UpdateColorByHSL X, 240 - Y, 120
+        imgCursor1.Move x - 7, y - 7
+        lngColorRef = picColorsRectangle.Point(x, y)
+        UpdateColorByHSL x, 240 - y, 120
         
         UpdateLuminanceBar
         UpdateNewColorPicture
@@ -726,11 +769,11 @@ Public Sub picColorsRectangle_MouseDown(Button As Integer, Shift As Integer, X A
     End If
 End Sub
 
-Private Sub picColorsRectangle_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If (Button = 1) And (0 <= X) And (X <= 240) And (0 <= Y) And (Y <= 240) Then
-        imgCursor1.Move X - 7, Y - 7
-        lngColorRef = picColorsRectangle.Point(X, Y)
-        UpdateColorByHSL X, 240 - Y, 120
+Private Sub picColorsRectangle_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If (Button = 1) And (0 <= x) And (x <= 240) And (0 <= y) And (y <= 240) Then
+        imgCursor1.Move x - 7, y - 7
+        lngColorRef = picColorsRectangle.Point(x, y)
+        UpdateColorByHSL x, 240 - y, 120
         
         UpdateLuminanceBar
         UpdateNewColorPicture
@@ -738,14 +781,14 @@ Private Sub picColorsRectangle_MouseMove(Button As Integer, Shift As Integer, X 
     End If
 End Sub
 
-Private Sub picColorsRectangle_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If (Button = 1) And (0 <= X) And (X <= 240) And (0 <= Y) And (Y <= 240) Then
+Private Sub picColorsRectangle_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If (Button = 1) And (0 <= x) And (x <= 240) And (0 <= y) And (y <= 240) Then
     
         blnIsDragging = False
     
-        imgCursor1.Move X - 7, Y - 7
-        lngColorRef = picColorsRectangle.Point(X, Y)
-        UpdateColorByHSL X, 240 - Y, 120
+        imgCursor1.Move x - 7, y - 7
+        lngColorRef = picColorsRectangle.Point(x, y)
+        UpdateColorByHSL x, 240 - y, 120
         
         UpdateLuminanceBar
         UpdateNewColorPicture
@@ -780,13 +823,13 @@ Private Sub picLuminance_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 ' 改成 Public 很重要
-Public Sub picLuminance_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If (Button = 1) And (0 <= X) And (X <= 240) And (0 <= Y) And (Y <= 240) Then
+Public Sub picLuminance_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If (Button = 1) And (0 <= x) And (x <= 240) And (0 <= y) And (y <= 240) Then
     
         blnIsDragging = True
     
-        imgCursor2.Top = Y - 7
-        UpdateColorByHSL HSL_.H, HSL_.S, 240 - Y
+        imgCursor2.Top = y - 7
+        UpdateColorByHSL HSL_.H, HSL_.S, 240 - y
         lngColorRef = RGB(RGB_.R, RGB_.G, RGB_.B)
         
         UpdateNewColorPicture
@@ -794,10 +837,10 @@ Public Sub picLuminance_MouseDown(Button As Integer, Shift As Integer, X As Sing
     End If
 End Sub
 
-Private Sub picLuminance_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If (Button = 1) And (0 <= X) And (X <= 240) And (0 <= Y) And (Y <= 240) Then
-        imgCursor2.Top = Y - 7
-        UpdateColorByHSL HSL_.H, HSL_.S, 240 - Y
+Private Sub picLuminance_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If (Button = 1) And (0 <= x) And (x <= 240) And (0 <= y) And (y <= 240) Then
+        imgCursor2.Top = y - 7
+        UpdateColorByHSL HSL_.H, HSL_.S, 240 - y
         lngColorRef = RGB(RGB_.R, RGB_.G, RGB_.B)
         
         UpdateNewColorPicture
@@ -805,13 +848,13 @@ Private Sub picLuminance_MouseMove(Button As Integer, Shift As Integer, X As Sin
     End If
 End Sub
 
-Private Sub picLuminance_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If (Button = 1) And (0 <= X) And (X <= 240) And (0 <= Y) And (Y <= 240) Then
+Private Sub picLuminance_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If (Button = 1) And (0 <= x) And (x <= 240) And (0 <= y) And (y <= 240) Then
     
         blnIsDragging = False
         
-        imgCursor2.Top = Y - 7
-        UpdateColorByHSL HSL_.H, HSL_.S, 240 - Y
+        imgCursor2.Top = y - 7
+        UpdateColorByHSL HSL_.H, HSL_.S, 240 - y
         lngColorRef = RGB(RGB_.R, RGB_.G, RGB_.B)
         
         UpdateNewColorPicture
@@ -900,6 +943,8 @@ Private Sub tabMain_Click()
                 txtS.Text = .S
                 txtL.Text = .L
             End With
+            
+            UpdateLuminanceBar
             
             If blnIsInitialized = True Then picColorsRectangle.SetFocus
     End Select

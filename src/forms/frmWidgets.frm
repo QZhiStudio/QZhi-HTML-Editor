@@ -1,18 +1,19 @@
 VERSION 5.00
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.4#0"; "comctl32.Ocx"
 Begin VB.Form frmWidgets 
+   BorderStyle     =   0  'None
    Caption         =   "组件"
    ClientHeight    =   9015
-   ClientLeft      =   120
-   ClientTop       =   465
+   ClientLeft      =   0
+   ClientTop       =   0
    ClientWidth     =   4560
    ControlBox      =   0   'False
    Icon            =   "frmWidgets.frx":0000
    LinkTopic       =   "Form1"
+   MDIChild        =   -1  'True
    ScaleHeight     =   9015
    ScaleWidth      =   4560
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  '窗口缺省
    Begin ComctlLib.TreeView treWidgets 
       Height          =   8055
       Left            =   0

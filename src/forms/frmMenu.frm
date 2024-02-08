@@ -2,16 +2,15 @@ VERSION 5.00
 Object = "{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}#1.1#0"; "ieframe.dll"
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.4#0"; "comctl32.Ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
-Begin VB.Form frmMenu 
+Begin VB.MDIForm frmMenu 
+   BackColor       =   &H8000000C&
    Caption         =   "QZhi HTML Editor"
-   ClientHeight    =   3015
+   ClientHeight    =   8715
    ClientLeft      =   225
    ClientTop       =   870
    ClientWidth     =   12555
    Icon            =   "frmMenu.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   3015
-   ScaleWidth      =   12555
    StartUpPosition =   3  '窗口缺省
    Begin ComctlLib.Toolbar tlbMain 
       Align           =   1  'Align Top
@@ -56,7 +55,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   7
          EndProperty
          BeginProperty Button5 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -80,7 +78,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   4
          EndProperty
          BeginProperty Button9 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -98,7 +95,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   11
          EndProperty
          BeginProperty Button12 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -138,8 +134,6 @@ Begin VB.Form frmMenu
       Width           =   12555
       _ExtentX        =   22146
       _ExtentY        =   741
-      ButtonWidth     =   635
-      ButtonHeight    =   582
       AllowCustomize  =   0   'False
       Wrappable       =   0   'False
       Appearance      =   1
@@ -172,7 +166,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   5
          EndProperty
          BeginProperty Button5 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -184,7 +177,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   3
          EndProperty
          BeginProperty Button7 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -226,8 +218,6 @@ Begin VB.Form frmMenu
       Width           =   12555
       _ExtentX        =   22146
       _ExtentY        =   741
-      ButtonWidth     =   635
-      ButtonHeight    =   582
       AllowCustomize  =   0   'False
       Wrappable       =   0   'False
       Appearance      =   1
@@ -272,7 +262,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   16
          EndProperty
          BeginProperty Button7 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   4
             Object.Width           =   3600
@@ -291,7 +280,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   1
          EndProperty
          BeginProperty Button10 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -327,7 +315,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   11
          EndProperty
          BeginProperty Button16 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -345,7 +332,6 @@ Begin VB.Form frmMenu
             ImageIndex      =   6
          EndProperty
          BeginProperty Button19 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
             Style           =   3
             MixedState      =   -1  'True
@@ -374,76 +360,108 @@ Begin VB.Form frmMenu
          Width           =   2310
       End
    End
-   Begin SHDocVwCtl.WebBrowser brwWebControl 
-      Height          =   510
-      Left            =   9000
-      TabIndex        =   7
-      TabStop         =   0   'False
-      Top             =   2400
-      Width           =   510
-      ExtentX         =   900
-      ExtentY         =   900
-      ViewMode        =   0
-      Offline         =   0
-      Silent          =   0
-      RegisterAsBrowser=   0
-      RegisterAsDropTarget=   1
-      AutoArrange     =   0   'False
-      NoClientEdge    =   0   'False
-      AlignLeft       =   0   'False
-      NoWebView       =   0   'False
-      HideFileNames   =   0   'False
-      SingleClick     =   0   'False
-      SingleSelection =   0   'False
-      NoFolders       =   0   'False
-      Transparent     =   0   'False
-      ViewID          =   "{0057D0E0-3573-11CF-AE69-08002B2E1262}"
-      Location        =   "http:///"
+   Begin VB.PictureBox picMsg 
+      Align           =   2  'Align Bottom
+      BorderStyle     =   0  'None
+      Height          =   1095
+      Left            =   0
+      ScaleHeight     =   1095
+      ScaleWidth      =   12555
+      TabIndex        =   10
+      Top             =   7620
+      Width           =   12555
+   End
+   Begin VB.PictureBox picWidgets 
+      Align           =   3  'Align Left
+      AutoRedraw      =   -1  'True
+      BorderStyle     =   0  'None
+      Height          =   5865
+      Left            =   0
+      ScaleHeight     =   5865
+      ScaleWidth      =   2115
+      TabIndex        =   9
+      Top             =   1755
+      Width           =   2115
    End
    Begin VB.Timer tmrQueryDocStat 
       Interval        =   40
       Left            =   12120
-      Top             =   1920
+      Top             =   4200
    End
-   Begin VB.PictureBox picTemp 
+   Begin VB.PictureBox picFraTemp 
+      Align           =   1  'Align Top
       AutoRedraw      =   -1  'True
-      BorderStyle     =   0  'None
-      Height          =   255
-      Left            =   9720
-      ScaleHeight     =   17
+      Height          =   495
+      Left            =   0
+      ScaleHeight     =   29
       ScaleMode       =   3  'Pixel
-      ScaleWidth      =   17
+      ScaleWidth      =   833
       TabIndex        =   6
-      Top             =   2640
+      Top             =   1260
       Visible         =   0   'False
-      Width           =   255
+      Width           =   12555
+      Begin SHDocVwCtl.WebBrowser brwWebControl 
+         Height          =   255
+         Left            =   9240
+         TabIndex        =   8
+         Top             =   120
+         Width           =   2415
+         ExtentX         =   4260
+         ExtentY         =   450
+         ViewMode        =   0
+         Offline         =   0
+         Silent          =   0
+         RegisterAsBrowser=   0
+         RegisterAsDropTarget=   1
+         AutoArrange     =   0   'False
+         NoClientEdge    =   0   'False
+         AlignLeft       =   0   'False
+         NoWebView       =   0   'False
+         HideFileNames   =   0   'False
+         SingleClick     =   0   'False
+         SingleSelection =   0   'False
+         NoFolders       =   0   'False
+         Transparent     =   0   'False
+         ViewID          =   "{0057D0E0-3573-11CF-AE69-08002B2E1262}"
+         Location        =   "http:///"
+      End
+      Begin VB.PictureBox picTemp 
+         AutoRedraw      =   -1  'True
+         BorderStyle     =   0  'None
+         Height          =   240
+         Left            =   480
+         ScaleHeight     =   16
+         ScaleMode       =   3  'Pixel
+         ScaleWidth      =   16
+         TabIndex        =   7
+         Top             =   120
+         Width           =   240
+      End
+      Begin VB.Image imgFGColor 
+         Height          =   240
+         Left            =   5520
+         Picture         =   "frmMenu.frx":4072
+         Top             =   120
+         Width           =   240
+      End
+      Begin VB.Image imgBGColor 
+         Height          =   240
+         Left            =   5040
+         Picture         =   "frmMenu.frx":4119
+         Top             =   120
+         Width           =   240
+      End
    End
    Begin MSComDlg.CommonDialog dlgMain 
       Left            =   12000
-      Top             =   2520
+      Top             =   4680
       _ExtentX        =   847
       _ExtentY        =   847
       _Version        =   393216
    End
-   Begin VB.Image imgFGColor 
-      Height          =   240
-      Left            =   11040
-      Picture         =   "frmMenu.frx":4072
-      Top             =   2040
-      Visible         =   0   'False
-      Width           =   240
-   End
-   Begin VB.Image imgBGColor 
-      Height          =   240
-      Left            =   10680
-      Picture         =   "frmMenu.frx":4119
-      Top             =   2040
-      Visible         =   0   'False
-      Width           =   240
-   End
    Begin ComctlLib.ImageList ilsTemp 
       Left            =   11400
-      Top             =   1800
+      Top             =   3960
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -452,7 +470,7 @@ Begin VB.Form frmMenu
    End
    Begin ComctlLib.ImageList ilsFormat 
       Left            =   11400
-      Top             =   2400
+      Top             =   4560
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -534,7 +552,7 @@ Begin VB.Form frmMenu
    End
    Begin ComctlLib.ImageList ilsBrowse 
       Left            =   10800
-      Top             =   2400
+      Top             =   4560
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -580,7 +598,7 @@ Begin VB.Form frmMenu
    End
    Begin ComctlLib.ImageList ilsMain 
       Left            =   10200
-      Top             =   2400
+      Top             =   4560
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -806,7 +824,15 @@ Private Sub cboZoom_Click()
     End If
 End Sub
 
-Private Sub Form_Load()
+Private Sub MDIForm_Initialize()
+    SetParent frmWidgets.hwnd, frmMenu.picWidgets.hwnd
+    SetParent frmMsg.hwnd, frmMenu.picMsg.hwnd
+End Sub
+
+Private Sub MDIForm_Load()
+
+    Me.WindowState = 2
+
     LoadFonts
     frmMsg.PrintLog Time, "App.StatusText", "字体加载成功"
     frmMsg.PrintLog Time, "App.StatusText", "主界面已初始化"
@@ -814,10 +840,19 @@ Private Sub Form_Load()
     brwWebControl.Move -2400, -2400 ' 该控件 Visible 不可设置为 False
 
     brwWebControl.Navigate "about:blank"
-
+    
+    Me.Show
+    
+    frmMenu.picWidgets.Width = 3600
+    frmMenu.picMsg.Height = (frmMenu.ScaleHeight - (frmMenu.tlbMain.Height * 3)) * 0.3 + frmMsg.tlbMsg.Height
+    
+    frmWidgets.Show
+    frmMsg.Show
+    frmCode.Show
+    
 End Sub
 
-Private Sub Form_Unload(Cancel As Integer)
+Private Sub MDIForm_QueryUnload(Cancel As Integer, UnloadMode As Integer)
     Cancel = Not CloseCurrentFile
     If Cancel = False Then
         AtExit
@@ -891,28 +926,33 @@ Private Sub mnuFilePageSetup_Click()
 End Sub
 
 Private Sub mnuFilePrint_Click()
+    Dim brwWeb As WebBrowser
+
     brwWebControl_Initialized = False
     brwWebControl.Navigate "about:blank"
 
     While brwWebControl_Initialized = False
         DoEvents
     Wend
-
-    If gapmMode = AppEditMode Then
-        WriteHTML brwWebControl, "<font face=""Courier New"">" & StringtoEntity(frmCode.eEditor.Value) & "</font>"
-    Else
-        WriteHTML brwWebControl, GetCurrentDocHTML
+    
+    If gapmMode = AppDesignMode Then
+        Set brwWeb = frmCode.brwDesign
+    ElseIf gapmMode = AppEditMode Then
+        WriteHTML brwWebControl, "<font face=""Courier New""><pre>" & StringtoEntity(frmCode.eEditor.Value) & "</pre></font>"
+        Set brwWeb = brwWebControl
+    ElseIf gapmMode = AppQuickViewMode Then
+        Set brwWeb = frmCode.brwQuickView
     End If
     
-    While brwWebControl_Initialized = False
-        DoEvents
-    Wend
+    brwWeb.ExecWB OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER
     
-    brwWebControl.ExecWB OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER
+    Set brwWeb = Nothing
 End Sub
 
 Private Sub mnuFilePrintPreview_Click()
 
+    Dim brwWeb As WebBrowser
+
     brwWebControl_Initialized = False
     brwWebControl.Navigate "about:blank"
 
@@ -920,20 +960,18 @@ Private Sub mnuFilePrintPreview_Click()
         DoEvents
     Wend
     
-    If gapmMode = AppEditMode Then
-        WriteHTML brwWebControl, "<font face=""Courier New"">" & StringtoEntity(frmCode.eEditor.Value) & "</font>"
-    Else
-        brwWebControl_Initialized = False
-        WriteHTML brwWebControl, GetCurrentDocHTML
-        
+    If gapmMode = AppDesignMode Then
+        Set brwWeb = frmCode.brwDesign
+    ElseIf gapmMode = AppEditMode Then
+        WriteHTML brwWebControl, "<font face=""Courier New""><pre>" & StringtoEntity(frmCode.eEditor.Value) & "</pre></font>"
+        Set brwWeb = brwWebControl
+    ElseIf gapmMode = AppQuickViewMode Then
+        Set brwWeb = frmCode.brwQuickView
     End If
     
-    While brwWebControl_Initialized = False
-        DoEvents
-    Wend
-
-    brwWebControl.ExecWB OLECMDID_PRINTPREVIEW, OLECMDEXECOPT_PROMPTUSER
-
+    brwWeb.ExecWB OLECMDID_PRINTPREVIEW, OLECMDEXECOPT_PROMPTUSER
+    
+    Set brwWeb = Nothing
     
 End Sub
 
@@ -983,6 +1021,14 @@ Private Function LoadFonts()
         cboFontSize.AddItem CStr(i)
     Next i
 End Function
+
+Private Sub picMsg_Resize()
+    frmMsg.Move 0, 0, picMsg.ScaleWidth, picMsg.ScaleHeight
+End Sub
+
+Private Sub picWidgets_Resize()
+    frmWidgets.Move 0, 0, picWidgets.ScaleWidth, picWidgets.ScaleHeight
+End Sub
 
 Private Sub tlbBrowse_ButtonClick(ByVal Button As ComctlLib.Button)
     Select Case Button.Key

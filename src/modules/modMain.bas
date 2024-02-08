@@ -18,7 +18,7 @@ Option Explicit
 Sub Main()
 
     If App.LogMode = 1 Then
-        If Dir("QZHE.chm", vbNormal) <> "" Then
+        If Dir(App.Path & "\QZHE.chm", vbNormal) <> "" Then
             App.HelpFile = "QZHE.chm"
         Else
             MsgBox "帮助文件缺失，程序无法启动", vbCritical, App.ProductName
@@ -36,28 +36,22 @@ Sub Main()
     CreateObject("WScript.Shell").RegWrite "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION\" & App.EXEName + ".exe", CStr(glngIEVersion * 1000), "REG_DWORD"
     
     InitWebSafeColors
-    
-'    测试
-'    Dim a As New clsColorPicker
-'    MsgBox CLRtoStr(a.GetColor(RGB(40, 123, 215)))
-'    Exit Sub
-'    测试
 
-    
-    
     frmMsg.PrintLog Time, "App.StatusText", "颜色索引表初始化成功"
     
-    frmMenu.Move 0, 0, Screen.Width, frmMenu.Height - frmMenu.ScaleHeight + frmMenu.tlbMain.Height * 3
     frmMenu.Show
-    frmWidgets.Move 0, frmMenu.Height + 120, 3600, Screen.Height - frmMenu.Height - 960
-    frmWidgets.Show
-    frmCode.Move frmWidgets.Width + 120, frmMenu.Height + 120, Screen.Width - frmWidgets.Width - 120, (Screen.Height - frmMenu.Height - 960 - 120) * 0.7
-    frmCode.Show
-    frmMsg.Move frmWidgets.Width + 120, frmCode.Top + frmCode.Height + 120, Screen.Width - frmWidgets.Width - 120, (Screen.Height - frmMenu.Height - 960 - 120) * 0.3
-    frmMsg.Show
     
-    ' frmColorPicker.Show vbModal
-    
+    If Command <> "" Then
+        gstrFileName = Command
+        
+        gstrDocHTML = OpenHTMLDoc(gstrFileName)
+        
+        frmCode.tabMain.Tabs(2).Selected = True
+        frmCode.eEditor.Value = gstrDocHTML
+        frmCode.tabMain_Click
+        frmCode.UpdateFormCaption gstrFileName
+    End If
+
 End Sub
 
 Public Function StringtoEntity(ByVal strString As String) As String
@@ -80,7 +74,7 @@ Public Function StringtoEntity(ByVal strString As String) As String
                 StringtoEntity = StringtoEntity & "&nbsp;&nbsp;&nbsp;&nbsp;"
         
             Case Else
-                StringtoEntity = StringtoEntity & "&#" & AscW(Mid(strString, i, 1))
+                StringtoEntity = StringtoEntity & "&#" & CLng(&HFFFF& And CInt(AscW(Mid(strString, i, 1))))
         End Select
     Next i
 End Function

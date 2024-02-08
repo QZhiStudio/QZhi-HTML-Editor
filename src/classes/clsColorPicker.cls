@@ -56,6 +56,8 @@ Public Function GetColor(ByVal lngCurrentColor As Long, ByVal lngNewColor As Lon
         frmCP.picColorsRectangle_MouseDown 1, 0, CSng(H_), CSng(CSng(240) - S_)
         frmCP.picLuminance_MouseDown 1, 0, 0, CSng(CSng(240) - L_)
         
+        frmCP.tabMain.Tabs(2).Selected = True
+        
     End If
     
     frmCP.blnIsInitialized = True

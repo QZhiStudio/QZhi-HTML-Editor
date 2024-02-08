@@ -10,10 +10,11 @@ Begin VB.Form frmCode
    ControlBox      =   0   'False
    Icon            =   "frmCode.frx":0000
    LinkTopic       =   "Form1"
+   MDIChild        =   -1  'True
    ScaleHeight     =   6615
    ScaleWidth      =   9360
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  '窗口缺省
+   WindowState     =   2  'Maximized
    Begin SHDocVwCtl.WebBrowser brwQuickView 
       Height          =   4335
       Left            =   6000
@@ -106,21 +107,18 @@ Begin VB.Form frmCode
          NumTabs         =   3
          BeginProperty Tab1 {0713F341-850A-101B-AFC0-4210102A8DA7} 
             Caption         =   "设计(&D)"
-            Key             =   ""
             Object.Tag             =   ""
             Object.ToolTipText     =   "设计"
             ImageVarType    =   2
          EndProperty
          BeginProperty Tab2 {0713F341-850A-101B-AFC0-4210102A8DA7} 
             Caption         =   "源码(&S)"
-            Key             =   ""
             Object.Tag             =   ""
             Object.ToolTipText     =   "源码"
             ImageVarType    =   2
          EndProperty
          BeginProperty Tab3 {0713F341-850A-101B-AFC0-4210102A8DA7} 
             Caption         =   "预览(&Q)"
-            Key             =   ""
             Object.Tag             =   ""
             Object.ToolTipText     =   "预览"
             ImageVarType    =   2
@@ -147,11 +145,13 @@ Attribute VB_Exposed = False
 ' See the License for the specific language governing permissions and
 ' limitations under the License.
 
+
 Option Explicit
 
 Public brwDesign_Initialized As Boolean
 Public brwSource_Initialized As Boolean
 Public brwQuickView_Initialized As Boolean
+' Public frmCode_Initialized As Boolean
 
 Dim idxSelectedTabItem As Long
 
@@ -198,7 +198,17 @@ Private Sub brwQuickView_DownloadComplete()
     brwQuickView.Silent = True
 End Sub
 
+Private Sub brwQuickView_NavigateError(ByVal pDisp As Object, URL As Variant, Frame As Variant, StatusCode As Variant, Cancel As Boolean)
+    frmMsg.PrintLog Time, "WebBrowser.NavigateError", vbCrLf & _
+        vbTab & "URL: " & URL & vbCrLf & _
+        vbTab & "Frame: " & Frame & vbCrLf & _
+        vbTab & "StatusCode: " & StatusCode
+        
+    Cancel = False
+End Sub
+
 Private Sub brwQuickView_NewWindow2(ppDisp As Object, Cancel As Boolean)
+    frmMsg.PrintLog Time, "WebBrowser.NavigateWarning", "本应在新窗口中被打开的链接 " & brwQuickView.Document.activeElement.href & " 被强制在本窗口打开。"
     brwQuickView.Navigate2 brwQuickView.Document.activeElement.href
     Cancel = True
 End Sub
@@ -231,6 +241,7 @@ Private Sub eEditor_onmouseup()
 End Sub
 
 Private Sub Form_Load()
+
     brwSource.Navigate "about:blank"
     brwDesign.Navigate "about:blank"
     brwQuickView.Navigate "about:blank"
@@ -238,8 +249,12 @@ Private Sub Form_Load()
     idxSelectedTabItem = 2
     tabMain_Click
     SetAppMode AppEditMode
+    
     frmMsg.PrintLog Time, "App.StatusText", "HTML 编辑器已初始化"
     
+    Me.Show
+    ' frmCode_Initialized = True
+    ' brwSource.SetFocus
     
 End Sub
 
@@ -280,6 +295,8 @@ Public Sub tabMain_Click()
             brwDesign.ZOrder 0
             
             If brwDesign_Initialized = True Then WriteHTML brwDesign, eEditor.Value
+            
+            ' If frmCode_Initialized = True Then brwDesign.SetFocus
         
         Case 2
             SetAppMode AppEditMode
@@ -289,6 +306,8 @@ Public Sub tabMain_Click()
             If idxSelectedTabItem = 1 Then
                 eEditor.Value = brwDesign.Document.documentElement.outerHTML
             End If
+            
+            ' If frmCode_Initialized = True Then brwSource.SetFocus
         
         Case 3
             SetAppMode AppQuickViewMode
@@ -305,6 +324,8 @@ Public Sub tabMain_Click()
                 DoEvents
             Wend
             WriteHTML brwQuickView, eEditor.Value
+            
+            ' If frmCode_Initialized = True Then brwQuickView.SetFocus
         
     End Select
     
