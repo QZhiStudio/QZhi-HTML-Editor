@@ -1,0 +1,3 @@
+行 20: 控件 tlbMsg 的类 ComctlLib.Toolbar 不是一个已加载的控件类。
+行 52: 控件 dlgMain 的类 MSComDlg.CommonDialog 不是一个已加载的控件类。
+行 84: 控件 ilsMsg 的类 ComctlLib.ImageList 不是一个已加载的控件类。

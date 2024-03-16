@@ -1,0 +1,8 @@
+行 16: 控件 tlbFormat 的类 ComctlLib.Toolbar 不是一个已加载的控件类。
+行 171: 控件 tlbBrowse 的类 ComctlLib.Toolbar 不是一个已加载的控件类。
+行 257: 控件 tlbMain 的类 ComctlLib.Toolbar 不是一个已加载的控件类。
+行 530: 控件 dlgMain 的类 MSComDlg.CommonDialog 不是一个已加载的控件类。
+行 537: 控件 ilsTemp 的类 ComctlLib.ImageList 不是一个已加载的控件类。
+行 546: 控件 ilsFormat 的类 ComctlLib.ImageList 不是一个已加载的控件类。
+行 628: 控件 ilsBrowse 的类 ComctlLib.ImageList 不是一个已加载的控件类。
+行 674: 控件 ilsMain 的类 ComctlLib.ImageList 不是一个已加载的控件类。

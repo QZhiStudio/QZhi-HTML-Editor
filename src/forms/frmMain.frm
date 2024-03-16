@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}#1.1#0"; "ieframe.dll"
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.4#0"; "comctl32.Ocx"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
 Begin VB.MDIForm frmMain 
    BackColor       =   &H8000000C&
    Caption         =   "QZhi HTML Editor"
@@ -498,7 +498,7 @@ Begin VB.MDIForm frmMain
          NoFolders       =   0   'False
          Transparent     =   0   'False
          ViewID          =   "{0057D0E0-3573-11CF-AE69-08002B2E1262}"
-         Location        =   ""
+         Location        =   "http:///"
       End
       Begin VB.PictureBox picTemp 
          AutoRedraw      =   -1  'True
@@ -1126,15 +1126,15 @@ Private Sub mnuViewMsg_Click()
     mnuViewMsg.Checked = Not mnuViewMsg.Checked
     
     If mnuViewMsg.Checked = True Then
-        Splitter2.Visible = True
-        Splitter2.Enabled = True
         picMsg.Visible = True
         picMsg.Enabled = True
+        Splitter2.Visible = True
+        Splitter2.Enabled = True
     Else
-        picMsg.Visible = False
-        picMsg.Enabled = False
         Splitter2.Visible = False
         Splitter2.Enabled = False
+        picMsg.Visible = False
+        picMsg.Enabled = False
     End If
 End Sub
 
