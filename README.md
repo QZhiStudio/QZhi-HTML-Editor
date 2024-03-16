@@ -92,3 +92,7 @@ QZhi HTML Editor 是一款轻量级的所见即所得编辑器，可用于编辑
 * 插入组件时自动分配 ID （除 Image/Ordered List/Unordered List）。
 
 * 将“Paragraph Break”组件名称改为“Paragraph”
+
+### 16/03/2024 v1.1.341
+
+* 修复了 Splitter 控件错位的问题
